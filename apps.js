@@ -1,64 +1,45 @@
-
-
 function askName() {
     var name = prompt("Enter your name");
     return name
 }
 
 
-
 function greeting(a) {
     alert(`Welcome, ${a}! I hope you are well.`);
 }
 
-
-
-
-
-
-
-
 function humanTurn() {
     var hum =0;
     do {
-       
+        var ran2 = Math.floor(Math.random() * 10) +1
+
         console.log(ran2);
 
         hum = hum + ran2
 
         console.log(hum);
 
-        var humnum = prompt(`Your current number is ${hum}. \n Would you ike another number? (y or n)  \n If you go over 20, you will lose`); 
+        var humnum = prompt(`Your current number is ${hum}. \n Would you like another number? (y or n)  \n If you go over 20, you will lose`); 
 
         if (hum >= 21){
             humnum = "n";
         }
 
     } while (humnum != "n") 
-    
-    function r() {
-        var rn = Math.floor(Math.random() * 10) +1
-        return rn
-    }
-
-
 
     
     alert (`Your final number is ${hum}`);
     
 
-
     return hum
 }
-
-
 
 function computerTurn(){
     var comp = 0;
 
     do {
 
-     var ran = Math.floor(Math.random() * 10) +1
+        var ran = Math.floor(Math.random() * 10) +1
 
         console.log(ran);
 
@@ -74,17 +55,11 @@ function computerTurn(){
     }
 
 
-        alert ("Lets tally up")
-        return comp
+    alert ("Lets tally up")
+    return comp
 }
 
-
-
 function compareNumbers(name, hum, comp ) {
-
-    var h = 0;
-    var c = 0;
-
 
 
     if (hum > 20){
@@ -97,14 +72,14 @@ function compareNumbers(name, hum, comp ) {
         alert(`My number was ${comp}. Since I went over 20, you win. `);
         h++
 
-    }else if (20 >= hum > comp) {
+    }else if (hum > comp) {
 
-        alert(`The score was Human: ${hum} to Computer: ${comp}. You win. `);
+        alert(`The score was Human: ${hum} to Computer: ${comp}. You (human) win. `);
         h++
 
-    } else if (hum < comp <= 20) {
+    } else if (hum < comp) {
 
-        alert(`The score was Human: ${hum} to Computer: ${comp}. I win. `);
+        alert(`The score was Human: ${hum} to Computer: ${comp}. I (computer) win. `);
         c++
 
     } else if (hum == comp) {
@@ -115,7 +90,22 @@ function compareNumbers(name, hum, comp ) {
 
     }
     alert(`Final score was Human: ${h} to Computer: ${c}`)
+    return h,c 
 }
 
-compareNumbers(greeting(askName()),humanTurn(),computerTurn())
 
+function playAgain() {
+
+    compareNumbers(greeting(askName()),humanTurn(),computerTurn())
+    var leave = prompt("Would you like to keep playing? (yes or no)");
+    if (leave != "no") {
+        playAgain() // recursive function
+    } else {
+        alert(`Have a good day. Final score was Human: ${h} to Computer: ${c} `)
+    }
+
+}
+
+var h = 0;
+var c = 0;
+playAgain()
